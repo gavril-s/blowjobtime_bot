@@ -7,6 +7,9 @@ MONTH = 30 * 24 * 60 * 60
 DAY   = 24 * 60 * 60
 HOUR  = 60 * 60
 
+funny_replies = ['Чеееел', 'Ты не туда пишешь, дурень', 'Ээммм', 'Reply text', '*Ответ*',
+                'Вставьте текст', 'Да, понимаю', 'Лолич', 'Кекич']
+
 def num_ending(n):
     if 20 > n > 10:
         return 2
@@ -49,6 +52,11 @@ bot = telebot.TeleBot('5173516150:AAFQGh_mrCsRhKuIQJ_7NqZ2TJI67qSknoU')
 @bot.message_handler(commands=['start'])
 def start(m, res=False):
     bot.send_message(m.chat.id, 'Привет, это отсос бот')
+
+@bot.message_handler(func=lambda message: True)
+def unknown_text(message):
+    rep = funny_replies[random.randint(0, len(funny_replies) - 1)]
+    bot.reply_to(message, rep)
 
 @bot.inline_handler(lambda query: True)
 def query_text(inline_query):
