@@ -72,4 +72,4 @@ def query_text(inline_query):
     except Exception as e:
         print(e)
 
-bot.polling(none_stop=True, interval=0)
+bot.polling(none_stop=True)
